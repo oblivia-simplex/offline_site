@@ -1,0 +1,13 @@
+body {
+    color: #fdfefc;
+    background-color: #131111;
+    <!-- background-color: #fdfefc; -->
+}
+a {
+    color: pink;
+    text-decoration: none;
+}
+a:hover {
+    color: hotpink;
+    text-decoration: none;
+}
