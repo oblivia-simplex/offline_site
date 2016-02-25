@@ -1,0 +1,12 @@
+<div id="fTelnetContainer"></div>
+<script src="//embed.ftelnet.ca/js/ftelnet-loader.js"></script>
+<script>
+    fTelnet.Hostname = "bbs.ftelnet.ca";
+    fTelnet.Port = 23;
+    fTelnet.ProxyHostname = "proxy-us-ga.ftelnet.ca";
+    fTelnet.ProxyPort = 80;
+    fTelnet.ProxyPortSecure = 443;
+    fTelnet.ConnectionType = "telnet";
+    fTelnet.Emulation = "ansi-bbs";
+    fTelnet.Init();
+</script>
