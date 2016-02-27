@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <title>Pseudo Sue's</title>
     <link rel="stylesheet" href="stylesheet.css" type="text/css">
+    
+    <!-- <style>
       
-     <!-- <style>
-   
     </style> -->
     <!-- TODO: move all of this css markup into a stylesheet. -->
   </head>
@@ -26,31 +26,179 @@
 
       <div id="main" style="float: left; width: 70%; font-size:115%;">
 
+        <h1 id="memetic-drift">Fri Feb 26 20:53:50 AST 2016</h1>
+
+        <h2>INTRO TO CYBERDARWINISM</h2>
+
+        <p>I've been thinking a lot about natural selection, lately -- not so
+          much the "natural" side of it, as the way it works as a general
+          algorithm. There's a long and enduring stream in AI research and
+          development, called "genetic algorithms" (or, according to variations
+          in method and history, "genetic programming", "evolutionary
+          computation", etc.) that implements Darwinian selection as a way to
+          evolve programmes that are fit to a particular task. It works
+          extremely well when the task is intractable in the face of less
+          stochastic programming methods -- typically, that is, when we're
+          dealing with NP-hard problems.</p> <!-- salt with links to wiki,
+        etc.-->
+
+        <p>The basic idea is just this: evolution, following an abstract but
+          effective Darwinian schema, only needs three things to occur:
+          replication, variation, and selection. It doesn't need "life". It
+          isn't even fussy about any particular properties of matter.
+          Programmes, in fact, are <em>exemplary</em> candidates for evolution.
+          (And you already know about memes.) It's possible -- in fact, it's
+          easy -- to evolve programmes that are well-adapted to particular
+          tasks, that find optimal solutions to problems, that fuzz out leaks
+          and holes in software, that discover and exploit vulnerabilities,
+          etc.</p>
+
+        <p>This is actually something I work with,
+          myself. <a href="https://github.com/oblivia-simplex/genlin">GENLIN</a>,
+          over in my github repo, is a linear genetic programming
+          engine, implemented in
+          Lisp. <a href="https://github.com/oblivia-simplex/NeuroWorm">NeuroWorm</a>
+          and <a href="https://github.com/oblivia-simplex/neuropong">NeuroPong</a>
+          are a couple of toy implementations of the <a href="http://nn.cs.utexas.edu/downloads/papers/stanley.ec02.pdf">NEAT</a> algo, which
+          I hacked together when I was just learning Python, a couple
+          years back. They're scrappy and amateurish, but fun. Another
+          project, a genetic ROP-chain payload evolver, is in the
+          pipes, too.</p>
+
+        <p>Classically, what you need to implement a genetic algorithm is
+          this: <ul> <li>some way of selecting, out of a population of (intially
+              random) programmes, candidates for reproduction <li>one or more
+              "variation operators", emulating mutation or sexual reproduction, for
+              example, for generating new programmes out of the programmes already
+              in your population</li> </ul>
+
+        <p>Selection is traditionally performed with reference to the
+          "fitness" of a specimen, which requires you to quantify <em>how
+            close</em> it comes to solving the problem you're interested in. For
+          classification problems, this could be tied to accuracy, or detection
+          rate, or whatever. For optimisation problems, it could be tied to
+          efficiency. Coming up with a good selection method is usually the key
+          to unravelling the entire problem. With that in hand, almost
+          everything else falls into place.</p>
+
+        <p>Once it's up and running, a genetic algorithm implements a form of
+          "machine learning", or even intelligence. There's something wonderful
+          about this. It's "Intelligent Design" turned on its head: instead of
+          looking at the complexity of life and stubbornly insist in the face of
+          Darwinian selection that there's some sort of divine "intelligence"
+          behind it all, we take random, blind, natural selection, deploy it an
+          absolutely artificial, virtual environment and exploit it <em>as</em>
+          a form of machine intelligence! There's something sublime in this. It
+          thrills the fuck out of me.</p>
+
+        <p>Anyway, lately I've been studying ways of engineering
+          <em>co-</em>evolution. Instead of measuring the evolving population
+          against some static, a priori measure of fitness, you evolve the
+          selection mechanism along with the population it selects from. You
+          evolve it, for instance, as a second population, in tension with the
+          first. Sometimes this is compared to the relation between
+          <em>host</em> and <em>parasite</em> populations, or predator and prey.
+          The parasite poses problems to the host, and itself has to adapt to
+          this task. The host tries to solve these problems in return.</p>
+
+        <p>There's many ways that this can go. The two populations can lock
+          into an "arms race", each adaptation accelerating the evolution of its
+          opponent. It's also possible for the two populations to collude,
+          learning to pose as little challenge as possible to one another,
+          settling into a sort of oligarchal mediocrity. An especially common
+          outcome, however, is for the two populations to simply
+          <a href="resources/parasite-gp.pdf">disengage</a>. This happens when the parasites and hosts lose any
+          means of telling the counterparts apart, when a parasite, for example,
+          has reached such an extreme state of virulence that every host is
+          fails its tests in equal measure. Imagine, for example, two
+          populations of pong paddles, where the left side has evolved to a
+          point that it defeats every single right paddle with equal (and high)
+          probability. At this point, whatever selective pressure that the left
+          side imposed on the right is lost -- and vice-versa. The two
+          populations enter a state that's known as <em>genetic drift</em>.
+          Variation continues to occur, but it is now a purely stochastic
+          process, a random walk. Adaptation has stopped, and any "intelligence"
+          that the system might have exhibited gives way to a kind of
+          free-floating delirium.</p>
+
+        <p>This is where we're at.</p>
+
+        <h2>RADICAL POSTURES AND MEMETIC DRIFT</h2>
+
+        <p>It's pretty obvious that this is what's been happening in
+          some (most) swaths of academic philosophy (something I've
+          stewed in, myself, for a pretty long time). You have these
+          entire discourses -- entire discursive populations -- that
+          are no longer sensitive to <em>any</em> selective pressures
+          from the outside. Discourses for whom the sciences are a
+          sort of opaque monolithic block, and any talk about them
+          dismissable as "scientism", and for which politics has about
+          as little texture as a couple of opaque, featureless
+          banners. What you get there is something that I suppose you
+          could call "memetic drift": they're not
+          exactly <em>stagnant</em> -- they're actually pretty lively
+          and volatile -- but the way they vary is almost completely
+          arbitrary. A random walk through academic memespace.</p>
+
+        <p>This seems like a pretty good way of framing <em>disengaged
+            political discourse</em>, too -- but I'm really not
+            talking about apathy or listlessness here. This is where a
+            lot of romantics end up -- a sort of self-styled "radical"
+            posture that is so intense, so virulent, that <em>no
+            adversary</em> can measure up to it. Everything is equally
+            unacceptable. A sort of polarization takes place --
+            between "left" and "right", for example -- but one that
+            seems less and less like an actual struggle.</p>
+
+        <p>This is a pretty abyssmal situation situation for
+          adversarial or minoritarian politics to find itself in.
+          Feminism, for example, isn't currently poised to impose any
+          sort of Unilateral Hegemony from above. Until the tables
+          turn, it's best bet is to be a clever sort of parasite, one
+          that can steer and redirect the evolution of its host. We
+          need to be virulent, or we at least need to be virulent
+          enough to avoid falling into the trap of collusion. There
+          is <em>always</em> a risk of collusion, and if that happens,
+          everything that counts is extinguished. Impatiently
+          ratcheting up the virulence and shooting for a sort of holy
+          radicalism leads to pathetic abandon. Any chance to sculpt
+          the adversary's political genome is lost, and a sort of
+          delirious drift is all we're left with.</p>
+
+        <p>So, this is where I am these days: tinkering with AI, and
+        working on my parasitism.</p>
+
+        <a href="https://en.wikipedia.org/wiki/Rhizocephala"><img src="images/Haeckel_Sacculina.jpg" width="80%"></a>
+
+
+        <p>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</p>
+
+
         <h1>Wed Feb 24 19:41:20 AST 2016</h1>
 
         <h2 id="fuzoma">FUZOMA!</h2>
         <p>About a year ago, I was looking around online for some fun,
-        sort of educational software that I could set up on an old
-        beater of a computer for my kids. I
-        found <a href="resource/FUZOMA16.ISO">this gem</a> (click to
-        download iso). I was just about to add a link to it on my
-        <a href="links.html">links</a> page, but saw that the site is
-        (temporarily or permanently) down. Here's a <a href="https://web.archive.org/web/20150907052348/http://superkeen.com/peacecorpsweblog/learning-software/">snapshot</a> from the
-        Internet Archive. What Paul Blair's done here is fantastic:
-        it's a set of scavenged games, educational programmes, a chatbot, a text editor,
-        and even
-        an <a href="https://en.wikipedia.org/wiki/XPL0">XPL0</a>
-        compiler, that <em>fits on a freaking floppy disk</em> and runs
-        on pretty much any old box that wheezes. It's genius, really.
-        Anyway, to keep this gem from dissolving into the ether,
-        I'm going to host it here. Hopefully Paul Blair's cool with
-        that.</p>
+          sort of educational software that I could set up on an old
+          beater of a computer for my kids. I
+          found <a href="resource/FUZOMA16.ISO">this gem</a> (click to
+          download iso). I was just about to add a link to it on my
+          <a href="links.html">links</a> page, but saw that the site is
+          (temporarily or permanently) down. Here's a <a href="https://web.archive.org/web/20150907052348/http://superkeen.com/peacecorpsweblog/learning-software/">snapshot</a> from the
+          Internet Archive. What Paul Blair's done here is fantastic:
+          it's a set of scavenged games, educational programmes, a chatbot, a text editor,
+          and even
+          an <a href="https://en.wikipedia.org/wiki/XPL0">XPL0</a>
+          compiler, that <em>fits on a freaking floppy disk</em> and runs
+          on pretty much any old box that wheezes. It's genius, really.
+          Anyway, to keep this gem from dissolving into the ether,
+          I'm going to host it here. Hopefully Paul Blair's cool with
+          that.</p>
 
         <p><a href="resources/FUZOMA16.IMG">Floppy image</a></p>
         <p><a href="resources/FUZOMA16.ISO">Burnable CD iso</a></p>
 
         <p>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</p>
-        
+
         <h1 id="cybersecurity-for-activists">Wed Feb 24 13:39:01 AST 2016</h1>
 
         <h2>CYBERSECURITY FOR ACTIVISTS</h2>
@@ -59,40 +207,40 @@
         cybersecurity for activists at the Halifax Public Library,
         with Quinn DuPont, in a few weeks. Check it out if you're in
         town. Here's the listing for Halifax Tradeschool:
-        
+
 
         <h3>Time: Saturday, April 2nd, 2pm</h3>
         <h3>Place: Halifax Public Library (Main Branch)</h3>
         <h3>Description:</h3>
 
         <p>This workshop will introduce tools and ideas for
-        cybersecurity, privacy, and digital protections for activists
-        and all concerned individuals. The workshop will engage an
-        open, jargon-free dialogue about safe and secure ways to
-        organize and communicate online, with a focus on practical
-        applications. We will discuss a range of techniques and
-        technologies, from the very simple to the highly secure, and
-        we will discuss appropriate methods, and how to evaluate
-        tools. Additionally, we will discuss offline approaches to
-        security, and identify ways that social engineering can be
-        avoided. We will discuss the challenges (and solutions) that
-        particular communities encounter, including union and labour
-        organizers; feminist, race and intersectional activists; and
-        those working in communities in support/with differing
-        abilities. This workshop is appropriate for all skill levels
-        and all interests, and is targeted at a beginner level. A
-        laptop computer is not required, although we encourage you to
+          cybersecurity, privacy, and digital protections for activists
+          and all concerned individuals. The workshop will engage an
+          open, jargon-free dialogue about safe and secure ways to
+          organize and communicate online, with a focus on practical
+          applications. We will discuss a range of techniques and
+          technologies, from the very simple to the highly secure, and
+          we will discuss appropriate methods, and how to evaluate
+          tools. Additionally, we will discuss offline approaches to
+          security, and identify ways that social engineering can be
+          avoided. We will discuss the challenges (and solutions) that
+          particular communities encounter, including union and labour
+          organizers; feminist, race and intersectional activists; and
+          those working in communities in support/with differing
+          abilities. This workshop is appropriate for all skill levels
+          and all interests, and is targeted at a beginner level. A
+          laptop computer is not required, although we encourage you to
           bring one.<p>
 
-          <p>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</p>
+        <p>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</p>
 
 
         <h1>Tue Feb 23 21:14:39 AST 2016</h1>
-        
+
         I've been meaning to set up a homepage for a while, now. The trick
         to getting around to it, as usual, was to do it as a way of
         procrastinating something <em>else</em>. So,
-        
+
         <pre>
           .._.._....._._........................_...._....
           .| || |___| | |___    __ __ _____ _ _| |__| |  .
@@ -100,9 +248,9 @@
           .|_||_\___|_|_\___( )  \_/\_/\___/_| |_\__,_(_).
           ..................|/............................
         </pre>
-        
+
         Content can wait. <br><br>
-        
+
         PS: Thanks to <a href="https://www.alicemaz.com/">Alice Maz</a>
         for the nudge I needed to get this up, and for letting me plagiarize
         her layout. I really plagiarized the fuck out of that layout.
@@ -111,23 +259,23 @@
         Monospace fonts and a general absence of clutter, though, what can I say?
         There's really no other decent way of doing things. For a
         while, remember, it <em>almost</em> lured us all away from facebook.<br><br>
-        
+
         =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-     <!-- Counter Code START
-    -- <a href="http://www.e-zeeinternet.com/"
-    target="_blank"><img src="http://www.e-zeeinternet.com/count.php?page=1138624&style=LED_r&nbdigits=5"
-    alt="Hit Counter" border="0"
-    ></a><br><a href="http://www.e-zeeinternet.com/" title="Hit Counter"
-    target="_blank" style="font-family: Geneva, Arial, Helvetica,
-    sans-serif; font-size: 10px; color: #000000; text-decoration:
-    none;">Hit Counter</a><!-- Counter Code END --> <!-- nah. I just
-    like knowing I still can.  -->
+        <!-- Counter Code START
+        -- <a href="http://www.e-zeeinternet.com/"
+              target="_blank"><img src="http://www.e-zeeinternet.com/count.php?page=1138624&style=LED_r&nbdigits=5"
+                                   alt="Hit Counter" border="0"
+                                   ></a><br><a href="http://www.e-zeeinternet.com/" title="Hit Counter"
+                                               target="_blank" style="font-family: Geneva, Arial, Helvetica,
+                                                                      sans-serif; font-size: 10px; color: #000000; text-decoration:
+                                                                      none;">Hit Counter</a><!-- Counter Code END --> <!-- nah. I just
+        like knowing I still can.  -->
       </div>
     </div>
-    
-    
-    
+
+
+
   </body>
 </html>
 
