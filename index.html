@@ -27,8 +27,158 @@
 
       <div id="main" style="float: left; width: 70%; font-size:115%;">
 
-        <h1 id="phineas">Sat Apr 16 20:33:40 ADT 2016</h1>
+       
+        <h1 id="stumpwm-qubes">Sun Apr 24 13:00:26 ADT 2016</h1>
+        <h2>Qubes with StumpWM</h2>
+
+        <p>I decided to celebrate the end of the semester in style, by
+        installing Qubes on my laptop. It's something I'd meant to try
+        out for a while, but which I never really got around to
+        digging into. Qubes has
+        some <a href="https://www.qubes-os.org/doc/hcl/">fairly
+        idiosyncratic requirements</a>, but it turned out that my
+        workstation (a T420s Thinkpad, with 8GiB of RAM and 300GiB of
+        disk space, spread over two SSDs) already satisfied all of
+        them, easily, despite being a relatively old machine (2011ish,
+          I think). </p>
+
+        <p>One of the initial hurdles for me, in setting up Qubes OS
+        the way I like it, was the desktop environment. It's very
+        nicely laid out, if you like KDE/XFCE with overlapping
+        windows, but having been a bit spoiled by xmonad and, more
+        recently, stumpwm, I found it a bit too busy and
+          cluttered.</p>
+
+        <p>I'm going to assume you already know the basics of what
+        Qubes is and how it works, here. You can get a good rundown of
+        all this on their website. The tl;dr is: Qubes is a Xen-based
+        OS, which lets you compartmentalize various activities,
+        applications, identities, etc. in separate, but efficient and
+        seamlessly interacting, VMs, called "qubes". Typically these
+        are Linux VMs, running Debian or Fedora, but I hear it's not
+        hard to set up BSD or Windows qubes, either (haven't tried
+        this yet, myself). The VMs, or qubes, or, in Xen's
+        terminology, "domains", are administered from a master,
+        bare-metal domain called "dom0", which is safely tucked away
+        from any network connectivity, though it is able to request
+        temporary connects through a gateway VM/qube/dom. The gateway,
+        by the way, can be set up to do neat things like routing all
+        traffic through Tor -- or, if you like, you can have *some*
+        qubes route through Tor while others connect to the internet
+        directly.</p>
         
+        <p>Getting stumpwm, a very nice and customizable tiling WM,
+        written entirely in Common Lisp, and benefiting from the
+        wonderfully interactive, code-and-compile-on-the-fly
+        environment that is Lisp, to run on Qubes wasn't too much
+          hassle. Here's how it's done:<p>
+          <ul>
+            <li> open a dom0 shell, and install your preferred
+              quicklisp-compatible lisp. For me, this is SBCL. You do
+              this using dom0's special software update feature,
+              which, the security conscious folks at Qubes remind you,
+              ought to be used sparingly and cautiously. Enter the
+              following at the prompt:
+              <br><pre>sudo qubes-dom0-update sbcl</li>
+            <li> now, install sbcl on one of your AppVMs (the
+            user-level ones, where you do all your usual usery things,
+            and which are typically connected to the internet is some
+            fashion), and <a href="www.quicklisp.org/beta">download
+                quicklisp</a>.</li>
+            <li> open an SBCL repl, and enter <br>
+              <pre>(load "quicklisp.lisp")</pre>
+              from the directory where quicklisp.lisp resides.</li>
+            <li> once quicklisp is installed, via SBCL (or CLISP, I
+              hear, which works just as well), enter the followingL
+              <br><pre>(ql:quickload :stumpwm)</pre>
+            <li> Qubes
+            <a href="https://www.qubes-os.org/doc/copy-from-dom0/">strongly
+            advises against copying anything <em>to</em> dom0</a>, for
+            perfectly sensible security reasons. But we're going to do
+            it anyways. The easiest way to do this is to first attach
+            a USB storage device, then visit the dom0 shell. Enter<br>
+            <pre>
+              qvm-block -a &lt; name of AppVM &gt; dom0:&lt;usb device&gt;
+            </pre>
+            filling in the appropriate values.</li>
+            <li> then, go to the AppVM you're using, and open a shell.
+            Use lsblk to see what devices are hanging around. You'll
+            probably see one with a name like xvdi or something, with
+            partitions with names like xvdi1. Mount it, as you
+              normally would, using
+              <pre>
+                sudo mount /dev/xvdi1 /mnt
+              </pre>.</li>
+            <li>copy quicklisp and stumpwm to the USB,
+              with <br>
+              <pre>
+                cp -r ~/quicklisp /mnt/
+              </pre>Unmount it
+              when you're finished.</li>
+            <li>go back to dom0, and mount /dev/sdc1, or whatever your
+            USB partition is called, as you normally would in linux
+              (without using qvm-block)</li>
+            <li>copy quicklisp into dom0's user's home directory,
+              because YOLO.</li>
+            <li>open an SBCL REPL, and run
+              <pre>
+                (ql:quickload :stumpwm)
+              </pre>
+              to make sure everything works. Does it? Good. Now
+            try <pre>(stumpwm:stumpwm)</pre>. If you get an error
+            message about there already being a window manager active,
+            you're golden, and ready for the next step.</li>
+            <li>While you're doing all this, you might also want to
+            grab <a href="https://github.com/stumpwm/stumpwm-contrib/tree/master/util/qubes">this
+            nice little Qubes module for stumpwm</a>. Just copy the
+            qubes directory in that repo to
+            "~/quicklisp/local-projects/" on dom0. It will do nice
+            things, like give your stump tiles borders that are
+            color-coded by VM. This is handy for keeping everything
+            disambiguated.</li>
+            <li>The next thing you want to do is to get your display
+            manager or desktop environment to use stumpwm instead of
+            whatever it's using. I'm assuming you're using XFCE, and
+            can't say for sure whether or not similar tricks will work
+              for KDE. There are two ways of doing this: you can
+            launch stumpwm directly from your display manager, or you
+            can launch it from within the XFCE environment, while
+            supressing XFCE's own WM. It's very nice of XFCE to let
+            you do this, and it works surprisingly well. I recommend
+            going this route, so that you can still get all the nice
+            desktop goodies that Qubes put in there, like the menu
+            bar, which lets you easily execute applications on
+            different VMs, and the VM manager. If you'd rather go a
+            more spartan route, and just learn how to do everything
+              from the dom0 command line, that's doable to.</li>
+            <li> First, we need a script to launch stumpwm from the
+            command line (as opposed to the lisp REPL). That's pretty
+              easy to do:</li>
+            <pre>
+              #! /bin/sbcl --script
+              (load "~/quicklisp/setup.lisp")
+              (ql:quickload :stumpwm)
+              (stumpwm:stumpwm)
+            </pre>
+            <li> Make that script executable, and put it in one of
+              your $PATH directories, like /usr/bin/, in dom0.</li>
+            <li> Now you're ready to go and
+            follow <a href="https://github.com/stumpwm/stumpwm-contrib/tree/master/util/qubes">this
+            handy tutorial</a>, which shows you how to use StumpWM
+            with Xubuntu. The process to use here is essentially the
+              same.</li>
+            <li> Create a .stumpwmrc file in your dom0 user's home
+              directory, and add this line to it: 
+              <pre>(ql:quickload :qubes)</pre>
+              alone with any other configuration magic you like.</li>
+            <li> If everything went according to plan, you should be
+            ready to reboot, and log into your Qubes/StumpWM
+              environment</li>
+
+            <p>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</p>
+            
+            <h1 id="phineas">Sat Apr 16 20:33:40 ADT 2016</h1>
+            <h2>Look upon HT, ye mighty, and despair!</h2>
 
        <p>So, the 1337-as-all-fuck hacker who took
         down <a href="http://www.csoonline.com/article/2943968/data-breach/hacking-team-hacked-attackers-claim-400gb-in-dumped-data.html">Hacking
