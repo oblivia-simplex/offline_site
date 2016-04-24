@@ -90,8 +90,8 @@
               <pre>(load "quicklisp.lisp")</pre>
               from the directory where quicklisp.lisp resides.</li><br>
             <li> once quicklisp is installed, via SBCL (or CLISP, I
-              hear, which works just as well), enter the followingL
-              <br><pre>(ql:quickload :stumpwm)</pre>
+              hear, which works just as well), enter the following
+              <br><pre>(ql:quickload :stumpwm)</pre></li><br>
             <li> Qubes
             <a href="https://www.qubes-os.org/doc/copy-from-dom0/">strongly
             advises against copying anything <em>to</em> dom0</a>, for
@@ -128,7 +128,8 @@
               to make sure everything works. Does it? Good. Now
             try <pre>(stumpwm:stumpwm)</pre>. If you get an error
             message about there already being a window manager active,
-            you're golden, and ready for the next step.</li><br>
+              you're golden, and ready for the next step.</li><br>
+            
             <li>While you're doing all this, you might also want to
             grab <a href="https://github.com/stumpwm/stumpwm-contrib/tree/master/util/qubes">this
             nice little Qubes module for stumpwm</a>. Just copy the
@@ -137,6 +138,7 @@
             things, like give your stump tiles borders that are
             color-coded by VM. This is handy for keeping everything
             disambiguated.</li><br>
+
             <li>The next thing you want to do is to get your display
             manager or desktop environment to use stumpwm instead of
             whatever it's using. I'm assuming you're using XFCE, and
@@ -152,26 +154,31 @@
             different VMs, and the VM manager. If you'd rather go a
             more spartan route, and just learn how to do everything
               from the dom0 command line, that's doable to.</li><br>
+
             <li> First, we need a script to launch stumpwm from the
             command line (as opposed to the lisp REPL). That's pretty
-              easy to do:</li><br>
+              easy to do:<br>
             <pre>
               #! /bin/sbcl --script
               (load "~/quicklisp/setup.lisp")
               (ql:quickload :stumpwm)
               (stumpwm:stumpwm)
-            </pre>
+            </pre></li><br>
+            
             <li> Make that script executable, and put it in one of
               your $PATH directories, like /usr/bin/, in dom0.</li><br>
+
             <li> Now you're ready to go and
             follow <a href="https://github.com/stumpwm/stumpwm-contrib/tree/master/util/qubes">this
             handy tutorial</a>, which shows you how to use StumpWM
             with Xubuntu. The process to use here is essentially the
               same.</li><br>
+
             <li> Create a .stumpwmrc file in your dom0 user's home
               directory, and add this line to it: 
               <pre>(ql:quickload :qubes)</pre>
               alone with any other configuration magic you like.</li><br>
+
             <li> If everything went according to plan, you should be
             ready to reboot, and log into your Qubes/StumpWM
               environment</li><br>
