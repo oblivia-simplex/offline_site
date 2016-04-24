@@ -96,25 +96,15 @@
             <a href="https://www.qubes-os.org/doc/copy-from-dom0/">strongly
             advises against copying anything <em>to</em> dom0</a>, for
             perfectly sensible security reasons. But we're going to do
-            it anyways. The easiest way to do this is to first attach
-            a USB storage device, then visit the dom0 shell. Enter<br>
-            <pre>
-              qvm-block -a &lt; name of AppVM &gt; dom0:&lt;usb device&gt;
-            </pre>
-            filling in the appropriate values.</li><br>
-            <li> then, go to the AppVM you're using, and open a shell.
-            Use lsblk to see what devices are hanging around. You'll
-            probably see one with a name like xvdi or something, with
-            partitions with names like xvdi1. Mount it, as you
-              normally would, using
+            it anyways.</li><br>
+            <li> The easiest way to do this is to run the following
+              command from the dom0 shell:
               <pre>
-                sudo mount /dev/xvdi1 /mnt</pre></li><br>
-            <li>copy quicklisp and stumpwm to the USB,
-              with <br>
-              <pre>
-                cp -r ~/quicklisp /mnt/
-              </pre>Unmount it
-              when you're finished.</li><br>
+                qvm-run --pass-io &lt;name of AppVM&gt; \
+                'tar cv -C /home/user ./quicklisp' | tar xf -
+              </pre></li><br>
+                          
+            
             <li>go back to dom0, and mount /dev/sdc1, or whatever your
             USB partition is called, as you normally would in linux
               (without using qvm-block)</li><br>
