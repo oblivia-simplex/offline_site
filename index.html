@@ -80,15 +80,15 @@
               which, the security conscious folks at Qubes remind you,
               ought to be used sparingly and cautiously. Enter the
               following at the prompt:
-              <br><pre>sudo qubes-dom0-update sbcl</li>
+              <br><pre>sudo qubes-dom0-update sbcl</li><br>
             <li> now, install sbcl on one of your AppVMs (the
             user-level ones, where you do all your usual usery things,
             and which are typically connected to the internet is some
             fashion), and <a href="www.quicklisp.org/beta">download
-                quicklisp</a>.</li>
+                quicklisp</a>.</li><br>
             <li> open an SBCL repl, and enter <br>
               <pre>(load "quicklisp.lisp")</pre>
-              from the directory where quicklisp.lisp resides.</li>
+              from the directory where quicklisp.lisp resides.</li><br>
             <li> once quicklisp is installed, via SBCL (or CLISP, I
               hear, which works just as well), enter the followingL
               <br><pre>(ql:quickload :stumpwm)</pre>
@@ -101,7 +101,7 @@
             <pre>
               qvm-block -a &lt; name of AppVM &gt; dom0:&lt;usb device&gt;
             </pre>
-            filling in the appropriate values.</li>
+            filling in the appropriate values.</li><br>
             <li> then, go to the AppVM you're using, and open a shell.
             Use lsblk to see what devices are hanging around. You'll
             probably see one with a name like xvdi or something, with
@@ -109,18 +109,18 @@
               normally would, using
               <pre>
                 sudo mount /dev/xvdi1 /mnt
-              </pre>.</li>
+              </pre>.</li><br>
             <li>copy quicklisp and stumpwm to the USB,
               with <br>
               <pre>
                 cp -r ~/quicklisp /mnt/
               </pre>Unmount it
-              when you're finished.</li>
+              when you're finished.</li><br>
             <li>go back to dom0, and mount /dev/sdc1, or whatever your
             USB partition is called, as you normally would in linux
-              (without using qvm-block)</li>
+              (without using qvm-block)</li><br>
             <li>copy quicklisp into dom0's user's home directory,
-              because YOLO.</li>
+              because YOLO.</li><br>
             <li>open an SBCL REPL, and run
               <pre>
                 (ql:quickload :stumpwm)
@@ -128,7 +128,7 @@
               to make sure everything works. Does it? Good. Now
             try <pre>(stumpwm:stumpwm)</pre>. If you get an error
             message about there already being a window manager active,
-            you're golden, and ready for the next step.</li>
+            you're golden, and ready for the next step.</li><br>
             <li>While you're doing all this, you might also want to
             grab <a href="https://github.com/stumpwm/stumpwm-contrib/tree/master/util/qubes">this
             nice little Qubes module for stumpwm</a>. Just copy the
@@ -136,7 +136,7 @@
             "~/quicklisp/local-projects/" on dom0. It will do nice
             things, like give your stump tiles borders that are
             color-coded by VM. This is handy for keeping everything
-            disambiguated.</li>
+            disambiguated.</li><br>
             <li>The next thing you want to do is to get your display
             manager or desktop environment to use stumpwm instead of
             whatever it's using. I'm assuming you're using XFCE, and
@@ -151,10 +151,10 @@
             bar, which lets you easily execute applications on
             different VMs, and the VM manager. If you'd rather go a
             more spartan route, and just learn how to do everything
-              from the dom0 command line, that's doable to.</li>
+              from the dom0 command line, that's doable to.</li><br>
             <li> First, we need a script to launch stumpwm from the
             command line (as opposed to the lisp REPL). That's pretty
-              easy to do:</li>
+              easy to do:</li><br>
             <pre>
               #! /bin/sbcl --script
               (load "~/quicklisp/setup.lisp")
@@ -162,19 +162,19 @@
               (stumpwm:stumpwm)
             </pre>
             <li> Make that script executable, and put it in one of
-              your $PATH directories, like /usr/bin/, in dom0.</li>
+              your $PATH directories, like /usr/bin/, in dom0.</li><br>
             <li> Now you're ready to go and
             follow <a href="https://github.com/stumpwm/stumpwm-contrib/tree/master/util/qubes">this
             handy tutorial</a>, which shows you how to use StumpWM
             with Xubuntu. The process to use here is essentially the
-              same.</li>
+              same.</li><br>
             <li> Create a .stumpwmrc file in your dom0 user's home
               directory, and add this line to it: 
               <pre>(ql:quickload :qubes)</pre>
-              alone with any other configuration magic you like.</li>
+              alone with any other configuration magic you like.</li><br>
             <li> If everything went according to plan, you should be
             ready to reboot, and log into your Qubes/StumpWM
-              environment</li>
+              environment</li><br>
 
             </ul>
             <p>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</p>
