@@ -157,9 +157,26 @@
               (stumpwm:stumpwm)
             </pre></li><br>
             
-            <li> Make that script executable, and put it in one of
-              your $PATH directories, like /usr/bin/, in dom0.</li><br>
+            <li> Make that script executable (chmod a+x it), and put it
+              in one of your $PATH directories, like /usr/bin/, in
+              dom0.</li><br>
 
+            <li>Now you're going to need to create a desktop entry in
+            /usr/share/xsesssions, in dom0. Open an editor (vi, say)
+              as root in dom0, and create the following file:
+              <pre>
+                [Desktop Entry]
+                Encoding=UTF-8
+                Type=XSession
+                Exec=stumpwm
+                TryExec=stumpwm
+                Name=StumpWM
+                comment=A tiling window manager, in Common Lisp
+              </pre>
+              and save it as /usr/share/xsessions/stumpwm.desktop.</li><br>
+              
+              
+            
             <li> Now you're ready to go and
             follow <a href="https://github.com/stumpwm/stumpwm/wiki/Xubuntu-XFCE-AndStumpWM">this
             handy tutorial</a>, which shows you how to use StumpWM
